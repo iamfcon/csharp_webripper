@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WebRipGUI
 {
@@ -32,17 +33,26 @@ namespace WebRipGUI
         }
         public static String GetHTML(String URL)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(URL);
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(URL);
 
-            WebResponse response = request.GetResponse();
+                WebResponse response = request.GetResponse();
 
-            Stream stream = response.GetResponseStream();
+                Stream stream = response.GetResponseStream();
 
-            StreamReader sReader = new StreamReader(stream);
+                StreamReader sReader = new StreamReader(stream);
 
-            string htmlText = sReader.ReadToEnd();
+                string htmlText = sReader.ReadToEnd();
 
-            return htmlText;
+                return htmlText;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error in GetHTML: " + e, "Error");
+                return "";
+            }
+           
 
             
         }
