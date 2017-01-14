@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,6 +34,8 @@ namespace WebRipGUI
         }
         public static String GetHTML(String URL)
         {
+            string htmlText;
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(URL);
@@ -43,18 +46,19 @@ namespace WebRipGUI
 
                 StreamReader sReader = new StreamReader(stream);
 
-                string htmlText = sReader.ReadToEnd();
+                htmlText = sReader.ReadToEnd();
 
-                return htmlText;
+                
             }
             catch(Exception e)
             {
                 MessageBox.Show("Error in GetHTML: " + e, "Error");
-                return "";
+                
+                htmlText = "Error: No valid website to rip HTML from";
             }
-           
 
-            
+            return htmlText;
+
         }
 
         public static void FindPledges(String htmlText)
@@ -64,8 +68,9 @@ namespace WebRipGUI
             //<div class="pledge__info">....</div>
             //The Pledge__info class is what makes each Pledge tile
 
+            String[] pledges;
 
-
+            MatchCollection mc = Regex.Matches(htmlText, )
         }
     }
 }
