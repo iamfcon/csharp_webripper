@@ -29,6 +29,7 @@ namespace WebRipGUI
                 {
                     //MessageBox.Show("Success, valid URL", "Success");
                     txtboxHTML.Text = HTTPConnect.GetHTML(txtboxURL.Text.ToString());
+                    HTTPConnect.FindPledges(txtboxHTML.Text);
                 }
                 else    //No Valid URL
                 {

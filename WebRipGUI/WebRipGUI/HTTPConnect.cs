@@ -69,8 +69,21 @@ namespace WebRipGUI
             //The Pledge__info class is what makes each Pledge tile
 
             String[] pledges;
+            String pattern = "<div class=\"pledge__info\">.*^</div>$";
+            int match_count = 0;
 
-            MatchCollection mc = Regex.Matches(htmlText, )
+
+            MatchCollection mc = Regex.Matches(htmlText, pattern, RegexOptions.Multiline);
+
+            foreach(Match m in mc)
+            {
+                match_count++;
+                //MessageBox.Show(m.Value);
+
+            }
+
+            MessageBox.Show("Total matches found: " + match_count);
+
         }
     }
 }
